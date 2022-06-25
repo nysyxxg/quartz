@@ -83,9 +83,9 @@ public class SimpleExample {
     }
 
     // shut down the scheduler
-    log.info("------- Shutting Down ---------------------");
-    sched.shutdown(true);
-    log.info("------- Shutdown Complete -----------------");
+//    log.info("------- Shutting Down ---------------------");
+//    sched.shutdown(true);
+//    log.info("------- Shutdown Complete -----------------");
   }
 
   public static void main(String[] args) throws Exception {
