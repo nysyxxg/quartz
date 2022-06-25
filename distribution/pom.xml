@@ -90,7 +90,7 @@
       <plugin>
         <groupId>com.github.goldin</groupId>
         <artifactId>copy-maven-plugin</artifactId>
-        <version>0.2.3.8</version>
+        <version>0.2.5</version>
         <configuration>
           <verbose>false</verbose>
           <resources>

@@ -15,14 +15,14 @@ public class QuartzTest {
     
     
     public static void main(String[] args) throws SchedulerException {
-        QuartUtil.addJob("测试定时任务", "test", "测试定时任务", "testTrigger", MyJob.class, "0/5 * * * * ?");
-        
+//        QuartUtil.addJob("测试定时任务", "test", "测试定时任务", "testTrigger", MyJob.class, "0/5 * * * * ?");
+//
         Class jobClass = MyJob.class;
-        String jobName = "";
-        String jobGroupName = "";
-        String triggerName = "";
-        String triggerGroupName = "";
-        String cron = "";
+        String jobName = "测试定时任务-2";
+        String jobGroupName = "test-2";
+        String triggerName = "测试定时任务-2";
+        String triggerGroupName = "testTrigger-2";
+        String cron = "0/5 * * * * ?";
         
         /**
          * 创建流程
@@ -30,6 +30,7 @@ public class QuartzTest {
          * 设置Job的实现类和一些静态信息
          */
         Scheduler sched = schedulerFactory.getScheduler();
+        Scheduler sched2 = StdSchedulerFactory.getDefaultScheduler();
         //jobClass 设置Job的实现类
         //jobName Job名称
         //jobGroupName Job组名称
