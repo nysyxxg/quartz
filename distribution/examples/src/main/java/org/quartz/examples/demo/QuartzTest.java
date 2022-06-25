@@ -3,6 +3,8 @@ package org.quartz.examples.demo;
 import org.quartz.*;
 import org.quartz.impl.StdSchedulerFactory;
 
+import java.util.List;
+
 /**
  * //​分布式定时任务框架Quartz
  * //  https:blog.51cto.com/u_14558366/3109785
@@ -15,6 +17,22 @@ public class QuartzTest {
     
     
     public static void main(String[] args) throws SchedulerException {
+        Class jobClass = MyJob.class;
+        String jobName = "测试定时任务";
+        String jobGroupName = "testJob";
+        String triggerName = "测试定时任务触发器";
+        String triggerGroupName = "testTrigger";
+        String cron = "0/5 * * * * ?";
+//        QuartUtil.addJob(jobName, jobGroupName, triggerName, triggerGroupName, jobClass, cron);
+        List<JobPayload> jobs = QuartUtil.getJobList(triggerName, triggerGroupName);
+        jobs.stream().forEach(job -> {
+            System.out.println(job);
+        });
+//        QuartUtil.delete(triggerName,triggerGroupName,jobName,jobGroupName);
+        
+    }
+    
+    public static void demo(String[] args) throws SchedulerException {
 //        QuartUtil.addJob("测试定时任务", "test", "测试定时任务", "testTrigger", MyJob.class, "0/5 * * * * ?");
 //
         Class jobClass = MyJob.class;
@@ -37,8 +55,7 @@ public class QuartzTest {
         JobDetail jobDetail = JobBuilder.newJob(jobClass).withIdentity(jobName, jobGroupName).build();
 
 //        构建触发器
-
-// 触发器
+//       触发器
         TriggerBuilder<Trigger> triggerBuilder = TriggerBuilder.newTrigger();
         // 触发器名,触发器组
         triggerBuilder.withIdentity(triggerName, triggerGroupName);
@@ -54,5 +71,4 @@ public class QuartzTest {
 // 启动
         sched.start();
     }
-    
 }
